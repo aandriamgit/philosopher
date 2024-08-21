@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:35:21 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/21 16:38:07 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:46:49 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int argc, char **argv)
 		free(r);
 		i++;
 	}
+
 	printf("le sum est de: %d\n", globalsum);
 	pthread_mutex_destroy(&mutex);
 }
