@@ -4,7 +4,9 @@ CFLAGS = -Werror -Wall -Wextra -g
 
 RM = rm -rf
 
-SRCS = philo.c
+SRCS = philo.c\
+	   ./lib/ft_atoi.c \
+		./valid_args/valid_args.c
 
 OBJS = $(SRCS:.c=.o)
 
