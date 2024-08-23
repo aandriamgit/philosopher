@@ -6,7 +6,8 @@ RM = rm -rf
 
 SRCS = philo.c\
 	   ./lib/ft_atoi.c \
-		./valid_args/valid_args.c
+	   ./valid_args/valid_args.c \
+	   ./saves_init/saves_init.c 
 
 OBJS = $(SRCS:.c=.o)
 

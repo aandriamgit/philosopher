@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/23 14:59:16 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:41:27 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ typedef struct s_saves
 typedef struct s_uses
 {
 	pthread_mutex_t	mutex;
+	int				philo_nb;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
 }					t_uses;
 
 typedef struct s_vars
@@ -37,4 +42,6 @@ typedef struct s_vars
 int					ft_isdigit(int c);
 int					ft_atoi(const char *nptr);
 int					only_digit(char *lol);
+int					find_philo_nb(t_vars vars);
+
 #endif

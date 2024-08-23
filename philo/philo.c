@@ -6,11 +6,12 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/23 15:01:23 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:44:47 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <stdio.h>
 
 int	valid_args(t_vars vars)
 {
@@ -43,6 +44,19 @@ void	saves_init(t_vars *vars, int argc, char **argv)
 void	uses_init(t_vars *vars)
 {
 	pthread_mutex_init(&vars->uses.mutex, NULL);
+	vars->uses.philo_nb = find_philo_nb(*vars);
+	printf("Le nombre de philo est %d\n", vars->uses.philo_nb);
+	vars->uses.time_to_die = ft_atoi(vars->saves.argv[2]);
+	printf("time to die %d\n", vars->uses.time_to_die);
+	vars->uses.time_to_eat = ft_atoi(vars->saves.argv[3]);
+	printf("time to eat %d\n", vars->uses.time_to_eat);
+	vars->uses.time_to_sleep = ft_atoi(vars->saves.argv[4]);
+	printf("time to sleep %d\n", vars->uses.time_to_sleep);
+	if (vars->saves.argv[5])
+	{
+		vars->uses.must_eat = ft_atoi(vars->saves.argv[5]);
+		printf("must eat %d\n", vars->uses.must_eat);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -50,6 +64,8 @@ int	main(int argc, char **argv)
 	t_vars	vars;
 
 	saves_init(&vars, argc, argv);
+	if (argc == 1)
+		return (0);
 	if (valid_args(vars))
 	{
 		uses_init(&vars);
