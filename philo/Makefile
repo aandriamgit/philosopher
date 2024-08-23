@@ -2,7 +2,7 @@ NAME = philo
 CFLAGS = -Werror -Wall -Wextra -pthread -g
 RM = rm -rf
 OBJ_DIR = obj
-SRCS = philo.c\
+SRCS = philo.c \
 	   lib/ft_atoi.c \
 	   valid_args/valid_args.c \
 	   saves_init/saves_init.c 

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/23 16:46:47 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/23 22:58:56 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void	uses_init(t_vars *vars)
 		vars->uses.must_eat = ft_atoi(vars->saves.argv[5]);
 }
 
+void	lets_start_the_dinner(t_vars *vars)
+{
+	(void)vars;
+}
+
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
@@ -62,6 +67,7 @@ int	main(int argc, char **argv)
 	if (valid_args(vars))
 	{
 		uses_init(&vars);
+		lets_start_the_dinner(&vars);
 	}
 	else
 		printf("Error, please enter valid arguments\n");
