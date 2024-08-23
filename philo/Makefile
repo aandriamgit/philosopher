@@ -1,6 +1,6 @@
 NAME = philo
 
-CFLAGS = -Werror -Wall -Wextra -g
+CFLAGS = -Werror -Wall -Wextra -pthread -g
 
 RM = rm -rf
 

@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/22 11:15:30 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/23 15:01:23 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	saves_init(t_vars *vars, int argc, char **argv)
 	vars->saves.argv = argv;
 }
 
+void	uses_init(t_vars *vars)
+{
+	pthread_mutex_init(&vars->uses.mutex, NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
@@ -47,6 +52,7 @@ int	main(int argc, char **argv)
 	saves_init(&vars, argc, argv);
 	if (valid_args(vars))
 	{
+		uses_init(&vars);
 	}
 	else
 		printf("Error, please enter valid arguments\n");
