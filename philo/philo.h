@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/24 07:58:44 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/24 09:05:28 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_saves
 {
@@ -41,6 +42,7 @@ typedef struct s_philo
 	int				is_sleeping;
 	int				is_thinking;
 	int				died;
+	t_uses			uses;
 	pthread_t		thread_id;
 }					t_philo;
 
@@ -69,5 +71,9 @@ int					find_philo_nb(t_vars vars);
 void				table_init(t_vars *vars);
 void				philos_init(t_vars *vars);
 void				forks_init(t_vars *vars);
+void				create_routines(t_vars *vars, int i);
+void				*thread_routine(void *vars);
+void				*thread_monitor(void *vars);
+void				join_them_all(t_vars vars, pthread_t monitor);
 
 #endif

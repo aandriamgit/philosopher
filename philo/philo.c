@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/24 07:35:22 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/24 08:51:09 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,17 @@ void	uses_init(t_vars *vars)
 
 void	lets_start_dinner(t_vars *vars)
 {
+	int			i;
+	pthread_t	monitor;
+
 	table_init(vars);
 	philos_init(vars);
 	forks_init(vars);
+	i = -1;
+	while (++i < vars->uses.philo_nb)
+		create_routines(vars, i);
+	pthread_create(&monitor, NULL, &thread_monitor, vars);
+	join_them_all(*vars, monitor);
 }
 
 int	main(int argc, char **argv)
