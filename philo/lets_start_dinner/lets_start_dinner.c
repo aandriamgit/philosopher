@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 01:39:20 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/24 09:05:53 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:27:55 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void	philos_init(t_vars *vars)
 	while (i < vars->uses.philo_nb)
 	{
 		vars->table.philo[i].died = 0;
-		vars->table.philo[i].is_eating = 0;
-		vars->table.philo[i].is_sleeping = 0;
-		vars->table.philo[i].is_thinking = 0;
+		vars->table.philo[i].states.is_eating = 0;
+		vars->table.philo[i].states.is_sleeping = 0;
+		vars->table.philo[i].states.is_thinking = 0;
 		vars->table.philo[i].forks_in_hand = 0;
-		vars->table.philo[i].has_taken_a_fork = 0;
+		vars->table.philo[i].states.has_taken_a_fork = 0;
+		vars->table.philo[i].id = (i + 1);
 		vars->table.philo[i].uses = vars->uses;
 		i++;
 	}
@@ -56,9 +57,24 @@ void	create_routines(t_vars *vars, int i)
 		printf("Error\n");
 }
 
-void	*thread_monitor(void *vars)
+void	*thread_monitor(void *vars_dim)
 {
-	return (vars);
+	t_vars	vars;
+	int		i;
+
+	vars = *(t_vars *)vars_dim;
+	while (1)
+	{
+		i = 0;
+		while (i < vars.uses.philo_nb)
+		{
+			if (vars.table.philo[i].died != 0)
+			{
+				printf("%d died", vars.table.philo[i].id);
+			}
+			i++;
+		}
+	}
 }
 
 void	join_them_all(t_vars vars, pthread_t monitor)

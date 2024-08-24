@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/24 09:05:28 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:17:52 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,21 @@ typedef struct s_uses
 	unsigned long	start_time;
 }					t_uses;
 
-typedef struct s_philo
+typedef struct s_states
 {
-	int				forks_in_hand;
-	int				has_taken_a_fork;
 	int				is_eating;
 	int				is_sleeping;
 	int				is_thinking;
+	int				has_taken_a_fork;
+}					t_states;
+
+typedef struct s_philo
+{
+	int				forks_in_hand;
 	int				died;
+	int				id;
 	t_uses			uses;
+	t_states		states;
 	pthread_t		thread_id;
 }					t_philo;
 
@@ -73,7 +79,7 @@ void				philos_init(t_vars *vars);
 void				forks_init(t_vars *vars);
 void				create_routines(t_vars *vars, int i);
 void				*thread_routine(void *vars);
-void				*thread_monitor(void *vars);
+void				*thread_monitor(void *vars_dim);
 void				join_them_all(t_vars vars, pthread_t monitor);
 
 #endif
