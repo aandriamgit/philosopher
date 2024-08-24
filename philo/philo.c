@@ -6,12 +6,11 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:14 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/23 22:58:56 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/24 07:35:22 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 
 int	valid_args(t_vars vars)
 {
@@ -43,7 +42,6 @@ void	saves_init(t_vars *vars, int argc, char **argv)
 
 void	uses_init(t_vars *vars)
 {
-	pthread_mutex_init(&vars->uses.mutex, NULL);
 	vars->uses.philo_nb = find_philo_nb(*vars);
 	vars->uses.time_to_die = ft_atoi(vars->saves.argv[2]);
 	vars->uses.time_to_eat = ft_atoi(vars->saves.argv[3]);
@@ -52,9 +50,11 @@ void	uses_init(t_vars *vars)
 		vars->uses.must_eat = ft_atoi(vars->saves.argv[5]);
 }
 
-void	lets_start_the_dinner(t_vars *vars)
+void	lets_start_dinner(t_vars *vars)
 {
-	(void)vars;
+	table_init(vars);
+	philos_init(vars);
+	forks_init(vars);
 }
 
 int	main(int argc, char **argv)
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 	if (valid_args(vars))
 	{
 		uses_init(&vars);
-		lets_start_the_dinner(&vars);
+		lets_start_dinner(&vars);
 	}
 	else
 		printf("Error, please enter valid arguments\n");

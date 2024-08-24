@@ -9,16 +9,9 @@ void	*routine(void *arg)
 {
 	int	index;
 	int	sum;
-	int	i;
 
-	i = 0;
 	index = *(int *)arg;
-	sum = 0;
-	while (i < 5)
-	{
-		sum += primes[index + i];
-		i++;
-	}
+	sum = primes[index];
 	pthread_mutex_lock(&mutex);
 	printf("local sum: %d\n", sum);
 	pthread_mutex_unlock(&mutex);
@@ -28,7 +21,7 @@ void	*routine(void *arg)
 
 int	main(int argc, char **argv)
 {
-	pthread_t	th[2];
+	pthread_t	th[10];
 	int			i;
 	int			*a;
 	int			globalsum;
@@ -36,17 +29,17 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	pthread_mutex_init(&mutex, NULL);
-	while (i < 2)
+	while (i < 10)
 	{
 		a = malloc(sizeof(int));
-		*a = i * 5;
+		*a = i;
 		if (pthread_create(&th[i], NULL, &routine, a) != 0)
 			printf("voici un message d'erreur\n");
 		i++;
 	}
 	globalsum = 0;
 	i = 0;
-	while (i < 2)
+	while (i < 10)
 	{
 		if (pthread_join(th[i], (void **)&r) != 0)
 			printf("voici un message d'erreur\n");

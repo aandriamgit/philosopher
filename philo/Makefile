@@ -5,7 +5,8 @@ OBJ_DIR = obj
 SRCS = philo.c \
 	   lib/ft_atoi.c \
 	   valid_args/valid_args.c \
-	   saves_init/saves_init.c 
+	   saves_init/saves_init.c \
+	   lets_start_dinner/lets_start_dinner.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
