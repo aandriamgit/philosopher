@@ -6,7 +6,7 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 01:39:20 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/24 10:27:55 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/24 11:21:05 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,19 @@ void	create_routines(t_vars *vars, int i)
 
 void	*thread_monitor(void *vars_dim)
 {
-	t_vars	vars;
+	t_vars	*vars;
 	int		i;
 
-	vars = *(t_vars *)vars_dim;
+	vars = (t_vars *)vars_dim;
 	while (1)
 	{
 		i = 0;
-		while (i < vars.uses.philo_nb)
+		while (i < vars->uses.philo_nb)
 		{
-			if (vars.table.philo[i].died != 0)
+			if (vars->table.philo[i].died != 0)
 			{
-				printf("%d died", vars.table.philo[i].id);
+				printf("%d died\n", vars->table.philo[i].id);
+				return (NULL);
 			}
 			i++;
 		}
