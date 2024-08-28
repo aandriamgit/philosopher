@@ -6,12 +6,12 @@
 /*   By: aandriam <aandriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:23:53 by aandriam          #+#    #+#             */
-/*   Updated: 2024/08/24 10:17:52 by aandriam         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:53:06 by aandriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <pthread.h>
 # include <stdio.h>
