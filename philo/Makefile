@@ -10,29 +10,34 @@ SRCS = philo.c \
 	   lets_start_dinner/create_routines.c 
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+
 YELLOW = \033[38;2;249;226;175m
 BLUE = \033[38;2;180;190;254m
 GREEN = \033[38;2;166;227;161m
-RESET = \033[38;2;205;214;244m
+RESET = \033[0m
+COMPILING = "\r${YELLOW}[ ]${RESET} compiling ${BLUE}"
+COMPILED = "\r${GREEN}[✔]${RESET} compiled successfully! ${BLUE}.  ★                    \n"
+RM_NAME = "\r${GREEN}[✔]${RESET} rm name successfully! ${BLUE}✧̣̇ ˳\n"
+RM_OBJS = "\r${GREEN}[✔]${RESET} rm objs successfully! ${BLUE}.˚ ✦\n"
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)/$(dir $<)
 	@cc $(CFLAGS) -c $< -o $@
 	@sleep 0.1
-	@printf "\r${YELLOW}[ ]${RESET} compiling ${BLUE}$<"
+	@printf $(COMPILING)$<
 
 $(NAME) : $(OBJS)
 	@cc $(CFLAGS) $(OBJS) -o $(NAME)
-	@printf "\r${GREEN}[✔]${RESET} compiled successfully! ${BLUE}.  ★                    \n"
+	@printf $(COMPILED)
 
 all: $(NAME)
 
 fclean: clean
 	@$(RM) $(NAME)
-	@printf "\n${GREEN}[✔]${RESET} rm name successfully! ${BLUE}✧̣̇ ˳\n"
+	@printf $(RM_NAME)
 
 clean:
 	@$(RM) $(OBJS) $(OBJ_DIR)
-	@printf "\r${GREEN}[✔]${RESET} rm objs successfully! ${BLUE}.˚ ✦"
+	@printf $(RM_OBJS)
 
 re: fclean all
