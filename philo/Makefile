@@ -23,7 +23,7 @@ RM_OBJS = "\r${GREEN}[✔]${RESET} rm objs successfully! ${BLUE}.˚ ✦\n"
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)/$(dir $<)
 	@cc $(CFLAGS) -c $< -o $@
-	@sleep 0.1
+	@sleep 0.12
 	@printf $(COMPILING)$<
 
 $(NAME) : $(OBJS)
